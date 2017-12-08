@@ -1,7 +1,6 @@
 import Vapor
-import Imperial
 
-public class ShopifyAuth: FederatedLoginService {
+public class ShopifyAuth: FederatedServiceTokens {
     public var idEnvKey: String = "SHOPIFY_CLIENT_ID"
     public var secretEnvKey: String = "SHOPIFY_CLIENT_SECRET"
     public var clientID: String
@@ -12,7 +11,7 @@ public class ShopifyAuth: FederatedLoginService {
         let secretError = ImperialError.missingEnvVar(secretEnvKey)
         
         do {
-            guard let id = ImperialConfig.gitHubID else {
+            guard let id = ShopifyImperialConfig.clientID else {
                 throw idError
             }
             self.clientID = id
@@ -21,7 +20,7 @@ public class ShopifyAuth: FederatedLoginService {
         }
         
         do {
-            guard let secret = ImperialConfig.gitHubSecret else {
+            guard let secret = ShopifyImperialConfig.secret else {
                 throw secretError
             }
             self.clientSecret = secret
@@ -30,3 +29,4 @@ public class ShopifyAuth: FederatedLoginService {
         }
     }
 }
+

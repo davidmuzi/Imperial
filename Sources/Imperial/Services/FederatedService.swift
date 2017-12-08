@@ -32,14 +32,4 @@ public protocol FederatedService {
     
     /// The service's router for handling the request for the access token.
     var router: FederatedServiceRouter { get }
-    
-    /// Creates a service for getting an access token from an OAuth provider.
-    ///
-    /// - Parameters:
-    ///   - authenticate: The path for the route that will redirect the user to the OAuth provider for authentication.
-    ///   - callback: The path (or URI) for the route that the provider will call when the user authenticates.
-    ///   - scope: The scopes to send to the provider to request access to.
-    ///   - completion: The completion handler that will fire at the end of the callback route. The access token is passed into the callback and the response that is returned will be returned from the callback route. This will usually be a redirect back to the app.
-    /// - Throws: Any errors that occur in the implementation.
-    init(authenticate: String, callback: String, scope: [String], completion: @escaping (String) -> (ResponseRepresentable))throws
 }

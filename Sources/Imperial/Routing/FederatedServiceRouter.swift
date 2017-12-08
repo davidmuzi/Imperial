@@ -25,16 +25,6 @@ public protocol FederatedServiceRouter {
     /// The URL of the page that the user will be redirected to to get the access token.
     var authURL: String { get }
     
-    
-    /// Creates an instence of the type implementing the protocol.
-    ///
-    /// - Parameters:
-    ///   - callback: The callback URL that the OAuth provider will redirect to after authenticating the user.
-    ///   - completion: The completion handler that will be fired at the end of the `callback` route. The access token is passed into it.
-    /// - Throws: Any errors that could occur in the implementation.
-    init(callback: String, completion: @escaping (String) -> (ResponseRepresentable))throws
-    
-    
     /// Configures the `authenticate` and `callback` routes with the droplet.
     ///
     /// - Parameter authURL: The URL for the route that will redirect the user to the OAuth provider.
@@ -50,7 +40,7 @@ public protocol FederatedServiceRouter {
     /// - Throws: N/A
     func authenticate(_ request: Request)throws -> ResponseRepresentable
     
-    /// The route that the OAuth provider calls when the user has benn authenticated.
+    /// The route that the OAuth provider calls when the user has been authenticated.
     ///
     /// - Parameter request: The request from the OAuth provider.
     /// - Returns: A response that should redirect the user back to the app.
